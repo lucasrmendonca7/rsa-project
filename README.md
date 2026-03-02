@@ -1,0 +1,1 @@
+Java implementation of the RSA cryptographic algorithm, including public and private key generation, message encryption, and decryption. Educational project focused on understanding asymmetric cryptography and information security fundamentals.
