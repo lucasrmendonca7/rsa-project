@@ -7,5 +7,6 @@ public class PrimeGenerator {
 
     public static BigInteger generatePrime(int bitLength) {
         return BigInteger.probablePrime(bitLength, new SecureRandom());
+
     }
 }

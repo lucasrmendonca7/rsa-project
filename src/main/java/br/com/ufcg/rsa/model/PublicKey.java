@@ -21,4 +21,5 @@ public class PublicKey {
     public static BigInteger calculateN(BigInteger p, BigInteger q) {
         return p.multiply(q);
     }
+
 }
