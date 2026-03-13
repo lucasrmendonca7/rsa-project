@@ -1,5 +1,16 @@
 package br.com.ufcg.rsa.model;
 
-public class PrivateKey {
+import java.math.BigInteger;
 
+public class PrivateKey {
+    private final BigInteger n;
+    private final BigInteger d;
+
+    public PrivateKey(BigInteger n, BigInteger d) {
+        this.n = n;
+        this.d = d;
+    }
+
+    public BigInteger getN() { return n; }
+    public BigInteger getD() { return d; }
 }
