@@ -1,5 +1,7 @@
 package br.com.ufcg.rsa.math;
 
+import java.math.BigInteger;
+
 /**
  * Utility class for modular arithmetic operations.
  */
@@ -11,42 +13,41 @@ public class ModInverse {
     private ModInverse() {}
 
     /**
-     * Calculates the modular multiplicative inverse of a number such that (number * x) % mod == 1.
-     * This implementation uses the Extended Euclidean Algorithm.
+     * Calculates the modular multiplicative inverse using the Extended Euclidean Algorithm.
      *
      * @param number The value to invert.
-     * @param mod    The modulus.
-     * @return The modular inverse in the range [0, mod - 1].
-     * @throws ArithmeticException If the number and mod are not coprime (GCD != 1).
+     * @param module The modulus.
+     * @return The modular inverse in the range [0, module - 1].
+     * @throws ArithmeticException If the inverse does not exist (GCD != 1).
      */
-    public static int modInverse(int number, int mod) {
-        if (GCD.gcd(number, mod) != 1) {
+    public static BigInteger modInverse(BigInteger number, BigInteger module) {
+        if (!GCD.gcd(number, module).equals(BigInteger.ONE)) {
             throw new ArithmeticException("Inverse does not exist: numbers are not coprime.");
         }
 
-        int xCurrent = 0;
-        int xNext = 1;
+        BigInteger x0 = BigInteger.ZERO;
+        BigInteger x1 = BigInteger.ONE;
 
-        int currentDividend = number;
-        int currentDivisor = mod;
+        BigInteger a = number;
+        BigInteger m = module;
 
-        while (currentDividend > 1) {
-            int quotient = currentDividend / currentDivisor;
-            int remainder = currentDividend % currentDivisor;
+        while (a.compareTo(BigInteger.ONE) > 0) {
+            BigInteger[] dr = a.divideAndRemainder(m);
+            BigInteger q = dr[0];
+            BigInteger r = dr[1];
 
-            currentDividend = currentDivisor;
-            currentDivisor = remainder;
+            a = m;
+            m = r;
 
-            int tempX = xCurrent;
-
-            xCurrent = xNext - (quotient * xCurrent);
-            xNext = tempX;
+            BigInteger tempX = x0;
+            x0 = x1.subtract(q.multiply(x0));
+            x1 = tempX;
         }
 
-        if (xNext < 0) {
-            xNext += mod;
+        if (x1.compareTo(BigInteger.ZERO) < 0) {
+            x1 = x1.add(module);
         }
 
-        return xNext;
+        return x1;
     }
 }
