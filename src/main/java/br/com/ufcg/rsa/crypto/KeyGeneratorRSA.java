@@ -25,12 +25,12 @@ public class KeyGeneratorRSA {
         BigInteger qMinus1 = q.subtract(BigInteger.ONE);
         BigInteger phi = pMinus1.multiply(qMinus1);
 
-        PublicKey pub = new PublicKey(n);
-        BigInteger lambda = pub.getLambda();
+        PublicKey publicKey = new PublicKey(p, q);
+        BigInteger lambda = publicKey.getLambda();
 
         BigInteger d = ModInverse.modInverse(lambda, phi);
 
-        PrivateKey privateKey = new PrivateKey(n, d);
-        return new KeyPairRSA(pub, privateKey);
+        PrivateKey privateKey = new PrivateKey(d);
+        return new KeyPairRSA(publicKey, privateKey);
     }
 }
