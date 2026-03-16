@@ -2,6 +2,22 @@ package br.com.ufcg.rsa.math;
 
 import java.math.BigInteger;
 
+/**
+ * Utility class that provides an implementation of the
+ * Fast Modular Exponentiation algorithm (also known as
+ * Exponentiation by Squaring).
+ *
+ * <p>This algorithm efficiently computes:
+ * <pre>
+ *     base^exp mod mod
+ * </pre>
+ *
+ * instead of computing base^exp directly, which would be
+ * computationally expensive for large numbers.
+ *
+ * <p>This method is widely used in cryptographic algorithms,
+ * including RSA encryption and decryption.
+ */
 public class FastModularExponentiation {
 
     /**
