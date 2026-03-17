@@ -5,6 +5,7 @@ import br.com.ufcg.rsa.model.KeyPairRSA;
 
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
+import java.util.*;
 
 /**
  * Provides functionality for decrypting RSA-encrypted data.
@@ -22,12 +23,16 @@ public class DecryptorRSA {
     public static String decrypt(List<BigInteger> cipherList, KeyPairRSA keyPair) {
         BigInteger d = keyPair.getPrivateKey().getD();
         BigInteger n = keyPair.getPublicKey().getN();
-        BigInteger decoded = FastModularExponentiation.fastModExp(cipherText, d, n);
-        return bigIntegerToString(decoded);
+
+        String decoded = "";
+        for (BigInteger bi : cipherList) {
+
+            BigInteger decodedNumber = FastModularExponentiation.fastModExp(bi, d, n);
+            decoded += decodedNumber.toString();
+        }
+        return bigIntegerToDescriptedString(decoded);
     }
 
-    public static String bigIntegerToString(BigInteger number) {
-        byte[] bytes = number.toByteArray();
     /**
      * Converts a concatenated decimal string back into its original UTF-8 string form.
      * * @param number A string representing the large BigInteger of the full message.

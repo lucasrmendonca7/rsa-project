@@ -7,6 +7,8 @@ import br.com.ufcg.rsa.model.PublicKey;
 
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Provides functionality for encrypting messages using the RSA algorithm.
@@ -27,11 +29,10 @@ public class EncryptorRSA {
 
         BigInteger c = FastModularExponentiation.fastModExp(m, lambda, n);
 
-        if (m.compareTo(publicKey.getN()) >= 0) {
-            throw new IllegalArgumentException("Mensagem muito grande para o tamanho da chave. Divida em blocos.");
+        for (BigInteger bi : blockingMessage(m, publicKey)) {
+            modList.add(FastModularExponentiation.fastModExp(bi, lambda, n));
         }
-
-        return c;
+        return modList;
     }
 
     /**
@@ -46,4 +47,27 @@ public class EncryptorRSA {
         return new BigInteger(1, bytes);
     }
 
+    private static List<BigInteger> blockingMessage(BigInteger m, PublicKey publicKey){
+        List<BigInteger> blockList = new ArrayList<>();
+        String message = m.toString();
+
+        int i = 0;
+        int j = 0;
+        String block = "";
+        while (j < message.length()){
+
+            block = message.substring(i, j+1);
+            if (new BigInteger(block).compareTo(publicKey.getN()) >= 1) {
+                blockList.add(new BigInteger(message.substring(i, j)));
+                i = j;
+            }
+            j++;
+        }
+        if (i == 0) {
+            blockList.add(m);
+            return blockList;
+        }
+        blockList.add(new BigInteger(message.substring(i)));
+        return blockList;
+    }
 }
