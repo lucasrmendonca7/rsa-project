@@ -4,10 +4,10 @@ import br.com.ufcg.rsa.crypto.DecryptorRSA;
 import br.com.ufcg.rsa.crypto.EncryptorRSA;
 import br.com.ufcg.rsa.crypto.KeyGeneratorRSA;
 import br.com.ufcg.rsa.model.KeyPairRSA;
-import br.com.ufcg.rsa.model.PublicKey;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
