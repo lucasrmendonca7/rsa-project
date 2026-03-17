@@ -47,6 +47,13 @@ public class EncryptorRSA {
         return new BigInteger(1, bytes);
     }
 
+    /**
+     * Divides a large BigInteger into smaller blocks to ensure each block
+     * is numerically smaller than the public modulus (n).
+     * * @param m The BigInteger representation of the full message.
+     * @param publicKey The public key used to determine the maximum block size.
+     * @return A list of BigInteger blocks safe for RSA encryption.
+     */
     private static List<BigInteger> blockingMessage(BigInteger m, PublicKey publicKey){
         List<BigInteger> blockList = new ArrayList<>();
         String message = m.toString();
