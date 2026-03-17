@@ -27,7 +27,7 @@ public class EncryptorRSA {
         BigInteger lambda = publicKey.getLambda();
         BigInteger n = publicKey.getN();
 
-        BigInteger c = FastModularExponentiation.fastModExp(m, lambda, n);
+        List<BigInteger> modList = new ArrayList<>();
 
         for (BigInteger bi : blockingMessage(m, publicKey)) {
             modList.add(FastModularExponentiation.fastModExp(bi, lambda, n));
