@@ -7,14 +7,17 @@ import br.com.ufcg.rsa.model.KeyPairRSA;
 import br.com.ufcg.rsa.model.PublicKey;
 
 import java.math.BigInteger;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         KeyPairRSA keys = KeyGeneratorRSA.generateRSAPair(1024);
-        String msg = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.ised in";
-        BigInteger cipherText = EncryptorRSA.encrypt(msg, keys.getPublicKey());
+        String msg = "Enquanto a escada desliza no muro e o tempo não para seu fluxo seguro, " +
+                "cada variação se amarra em segredo pela regra da cadeia que vence o medo, " +
+                "revelando que a vida em sua pressa medida é uma taxa ligada em outra contida.";
+        List<BigInteger> cipherText = EncryptorRSA.encrypt(msg, keys.getPublicKey());
 
-        System.out.println(cipherText);
+        System.out.println(cipherText.toString());
 
         msg = DecryptorRSA.decrypt(cipherText, keys);
 
