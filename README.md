@@ -1,10 +1,8 @@
-# 1. Project Title
-
-**RSA Cryptosystem – Educational Java Implementation**
-
+# RSA Cryptosystem
+> Educational Java Implementation 
 ---
 
-## 2. Overview
+## 1. Overview
 
 This repository contains an educational implementation of the **RSA public-key cryptosystem** in Java.  
 It implements the full RSA cycle: key generation, encryption, and decryption using modular arithmetic and fast modular exponentiation.
@@ -22,7 +20,7 @@ This project was developed for the course **Mathematics for Computer Science II*
 
 ---
 
-## 3. Features
+## 2. Features
 
 - **RSA Key Generation**
   - Random probable primes `p` and `q`
@@ -43,7 +41,7 @@ This project was developed for the course **Mathematics for Computer Science II*
 
 ---
 
-## 4. Mathematical Concepts Behind RSA
+## 3. Mathematical Concepts Behind RSA
 
 RSA is built on core number theory concepts:
 
@@ -59,7 +57,7 @@ RSA is built on core number theory concepts:
 
 ---
 
-## 5. Project Structure
+## 4. Project Structure
 
 Main packages:
 
@@ -81,7 +79,7 @@ Main packages:
 
 ---
 
-## 6. How the RSA Algorithm Works (short explanation)
+## 5. How the RSA Algorithm Works (short explanation)
 
 1. **Generate keys**
    - Choose primes `p` and `q`
@@ -100,7 +98,7 @@ Main packages:
 
 ---
 
-## 7. Example Usage
+## 6. Example Usage
 
 ```java
 import br.com.ufcg.rsa.crypto.KeyGeneratorRSA;
@@ -126,7 +124,7 @@ public class Example {
 
 ---
 
-### 8. Performance Experiment (Time Analysis)
+## 7. Performance Experiment (Time Analysis)
 
 We performed simple execution benchmarks to measure the temporal cost of the RSA algorithm stages. Timing was collected using `System.nanoTime()` (converted to milliseconds) representing the average of 30 executions for each key size.
 
@@ -143,7 +141,7 @@ We performed simple execution benchmarks to measure the temporal cost of the RSA
 * **Encryption vs. Decryption:** Encryption is nearly instantaneous across all sizes (~0.3ms) because the public key exponent (`e`) is typically a small number. Decryption takes longer (up to ~35ms) because the private key (`d`) is massive, requiring heavier modular arithmetic.
 * **JVM Warmup:** The slight delay at 256 bits compared to 512 bits is not a mathematical anomaly, but rather a standard Java behavior. It reflects the JVM's Just-In-Time (JIT) compiler "warmup" phase during the first few executions.
 
-## 9. How to Run the Project
+## 8. How to Run the Project
 
 This project uses **Maven** for dependency and build management. You can run it easily through an IDE or via the command line.
 
@@ -164,7 +162,7 @@ mvn exec:java -Dexec.mainClass="br.com.ufcg.rsa.Example"
 ```
 ---
 
-## 10. Technologies Used
+## 9. Technologies Used
 
 - **Java**
 - `java.math.BigInteger` for large integer arithmetic
