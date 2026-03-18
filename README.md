@@ -1,5 +1,9 @@
 # RSA Cryptosystem
 > Educational Java Implementation 
+
+![Java](https://img.shields.io/badge/Java-17+-orange)
+![Status](https://img.shields.io/badge/status-educational-green)
+![License](https://img.shields.io/badge/license-MIT-blue)
 ---
 
 ## 1. Overview
